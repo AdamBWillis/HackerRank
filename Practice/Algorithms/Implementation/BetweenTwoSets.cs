@@ -32,9 +32,9 @@ class Result
         for(var i = 1; i <= b.Max(); i++)
         {
             var count = 0;
-            foreach(var factor in b)
+            foreach(var composite in b)
             {
-                count = factor % i == 0 ? ++count : count;
+                count = composite % i == 0 ? ++count : count;
             }
             if (count == b.Count())
                 factorCandidates.Add(i);
@@ -43,9 +43,9 @@ class Result
         for (var i = 0; i < factorCandidates.Count(); i++)
         {
             var count = 0;
-            foreach (var composite in a)
+            foreach (var factor in a)
             {
-                count = factorCandidates[i] % composite == 0 ? ++count : count;
+                count = factorCandidates[i] % factor == 0 ? ++count : count;
             }
             if (count != a.Count())
                 factorCandidates[i] = -1;
