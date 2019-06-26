@@ -17,17 +17,15 @@ class Solution {
     // Complete the countingValleys function below.
     static int countingValleys(int n, string s) {
         var elevation = 0;
-        var valleys = 0;
-        var direction = 0;
+        var vallies = 0;
         for(var i = 0; i < s.Length; i++)
         {
             var currentElevation = elevation;
             elevation = s[i] == 'D' ? --elevation : ++elevation;
-            direction = s[i] == 'D' ? -1 : 1;
-            if (currentElevation < 0 && currentElevation + direction == 0)
-                valleys++;            
+            if (currentElevation == -1 && elevation == 0)
+                vallies++;            
         }
-        return valleys;
+        return vallies;
     }
 
     static void Main(string[] args) {
