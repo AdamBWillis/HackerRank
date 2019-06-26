@@ -9,24 +9,14 @@ class Solution {
      * Complete the getMoneySpent function below.
      */
     static int getMoneySpent(int[] keyboards, int[] drives, int b) {
-        var rollingCost = 0;
+        var ks = new List<int>(keyboards);
+        var ds = new List<int>(drives);
 
-        for(var k = 0; k < keyboards.Count(); k++)
-        {
-            
-            for(var d = 0; d < drives.Count(); d++)
-            {
-                var comboCost = keyboards[k] + drives[d];
-                if (comboCost <= b && b - comboCost <= b - rollingCost && b - comboCost >= 0)
-                    rollingCost = comboCost;
-            }
-        }
-
-        if (rollingCost > 0)
-            return rollingCost;
-        else
-            return -1;
-
+        return ks
+            .SelectMany(k => ds, (k, d) => k + d)
+            .Where(x => x <= b)
+            .DefaultIfEmpty(-1)
+            .Max();
     }
 
     static void Main(string[] args) {
